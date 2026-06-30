@@ -3,46 +3,104 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Happy Birthday Atchaya ❤️</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="style.css">
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#ff758c,#ff7eb3,#ffc3a0);
+background-size:400% 400%;
+animation:bg 10s ease infinite;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+overflow:hidden;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.card{
+width:100%;
+max-width:360px;
+background:rgba(255,255,255,.18);
+backdrop-filter:blur(18px);
+border-radius:25px;
+padding:25px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+h1{
+font-family:'Great Vibes',cursive;
+font-size:55px;
+color:white;
+margin-bottom:15px;
+}
+
+img{
+width:220px;
+height:220px;
+object-fit:cover;
+border-radius:50%;
+border:6px solid white;
+box-shadow:0 8px 20px rgba(0,0,0,.25);
+margin:15px 0;
+}
+
+button{
+padding:14px 30px;
+border:none;
+border-radius:40px;
+background:white;
+color:#ff2d75;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+}
+
+#msg{
+margin-top:20px;
+color:white;
+line-height:1.8;
+font-size:17px;
+display:none;
+}
+</style>
+
 </head>
-
 <body>
 
-<div class="overlay">
+<div class="card">
 
-<h1 id="typing"></h1>
+<h1>Happy Birthday<br>Atchaya ❤️</h1>
 
-<p class="quote">
-Every smile of yours makes the world a little brighter. ✨
-</p>
+<img id="photo" src="IMG-20260630-WA0005.jpg">
 
-<button onclick="openGift()">
-🎁 Open My Surprise
-</button>
+<button onclick="openGift()">🎁 Open My Surprise</button>
 
-<div id="gift" class="hidden">
-
-<img id="slide" src="IMG-20260630-WA0005.jpg">
-
-<h2>Happy Birthday Atchaya ❤️</h2>
-
-<p id="letter">
-May your birthday be as beautiful as your smile.
-May every dream you have come true and may your life always be filled with happiness, love and success. 🌸
-</p>
-
+<div id="msg">
+🎉 Happiest Birthday, Atchaya! ❤️<br><br>
+May your smile always stay this beautiful.
+May every dream you wish for come true.
+Stay happy, stay blessed and keep shining forever. 🌸✨cheers to 20 mental
 </div>
 
 </div>
 
-<script src="script.js"></script>
-
-</body>
-</html>
+<script>
