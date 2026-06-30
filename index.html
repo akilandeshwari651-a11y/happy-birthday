@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -37,7 +38,7 @@ overflow:hidden;
 .card{
 width:100%;
 max-width:360px;
-background:rgba(255,255,255,.18);
+background:rgba(255,255,255,.2);
 backdrop-filter:blur(18px);
 border-radius:25px;
 padding:25px;
@@ -47,19 +48,27 @@ box-shadow:0 10px 30px rgba(0,0,0,.25);
 
 h1{
 font-family:'Great Vibes',cursive;
-font-size:55px;
+font-size:50px;
 color:white;
 margin-bottom:15px;
+text-shadow:0 2px 10px rgba(0,0,0,.2);
 }
 
-img{
+#slideshow{
 width:220px;
 height:220px;
 object-fit:cover;
-border-radius:50%;
-border:6px solid white;
+border-radius:20px;
+border:5px solid white;
 box-shadow:0 8px 20px rgba(0,0,0,.25);
 margin:15px 0;
+display:none;
+animation:fadeImg 0.8s ease;
+}
+
+@keyframes fadeImg{
+from{opacity:0; transform:scale(0.8);}
+to{opacity:1; transform:scale(1);}
 }
 
 button{
@@ -71,49 +80,144 @@ color:#ff2d75;
 font-size:18px;
 font-weight:bold;
 cursor:pointer;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
 transition:0.3s;
 }
 
 button:hover{
 transform:scale(1.05);
-box-shadow:0 5px 15px rgba(0,0,0,.2);
 }
 
-#msg{
+#quoteBox{
 margin-top:20px;
 color:white;
 line-height:1.8;
 font-size:17px;
+min-height:80px;
 display:none;
-animation:fadeIn 1s ease;
+animation:fadeIn 0.8s ease;
+text-shadow:0 1px 5px rgba(0,0,0,.2);
 }
 
 @keyframes fadeIn{
-from{opacity:0; transform:translateY(10px);}
+from{opacity:0; transform:translateY(15px);}
 to{opacity:1; transform:translateY(0);}
 }
-</style>
 
+#finalMsg{
+font-size:28px;
+font-weight:bold;
+color:white;
+margin-top:20px;
+display:none;
+animation:popFinal 1s ease;
+text-shadow:0 2px 10px rgba(255,45,117,.5);
+}
+
+@keyframes popFinal{
+0%{transform:scale(0);}
+70%{transform:scale(1.2);}
+100%{transform:scale(1);}
+}
+</style>
 </head>
 <body>
 
 <div class="card">
-
 <h1>Happy Birthday<br>Atchaya ❤️</h1>
 
-<img id="photo" src="IMG-20260630-WA0005.jpg">
+<img id="slideshow" src="" alt="Atchaya">
 
-<button onclick="openGift()">🎁 Open My Surprise</button>
+<button id="giftBtn" onclick="startSurprise()">🎁 Open My Surprise</button>
 
-<div id="msg">
-🎉 Happiest Birthday, Atchaya! ❤️<br><br>
-May your smile always stay this beautiful.<br>
-May every dream you wish for come true.<br>
-Stay happy, stay blessed and keep shining forever. 🌸✨<br>
-Cheers to 20 mental
+<div id="quoteBox"></div>
+<div id="finalMsg">Cheers to 20 mental 🥳🎉</div>
 </div>
 
-</div>
-
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 <script>
-function
+// Un repo la irukura 6 photos
+const photos = [
+  "IMG-20260630-WA0005.jpg",
+  "IMG-20260630-WA0006.jpg", 
+  "IMG-20260630-WA0010.jpg",
+  "IMG-20260630-WA0015.jpg",
+  "IMG-20260630-WA0016.jpg",
+  "IMG-20260630-WA0053.jpg"
+];
+
+// Photo ku ethapla quotes - idha maathikalaam
+const quotes = [
+  "Your smile is the cutest thing ever ✨",
+  "May this year bring you endless joy 🌸",
+  "Keep shining like the star you are 🌟",
+  "The world is brighter with you in it 💖",
+  "Stay blessed, stay happy always 🥰",
+  "You deserve all the happiness today & forever 🎂"
+];
+
+let currentIndex = 0;
+let slideshowInterval;
+
+function startSurprise(){
+  document.getElementById('giftBtn').style.display = 'none';
+  document.getElementById('slideshow').style.display = 'inline-block';
+  document.getElementById('quoteBox').style.display = 'block';
+  
+  // First photo + quote
+  showSlide();
+  
+  // Every 3 sec ku photo + quote change aagum
+  slideshowInterval = setInterval(showSlide, 3000);
+}
+
+function showSlide(){
+  if(currentIndex < photos.length){
+    // Photo change
+    document.getElementById('slideshow').src = photos[currentIndex];
+    document.getElementById('slideshow').style.animation = 'none';
+    setTimeout(() => {
+      document.getElementById('slideshow').style.animation = 'fadeImg 0.8s ease';
+    }, 10);
+    
+    // Quote change
+    document.getElementById('quoteBox').innerHTML = quotes[currentIndex];
+    document.getElementById('quoteBox').style.animation = 'none';
+    setTimeout(() => {
+      document.getElementById('quoteBox').style.animation = 'fadeIn 0.8s ease';
+    }, 10);
+    
+    currentIndex++;
+  } else {
+    // Slideshow mudinjadhum
+    clearInterval(slideshowInterval);
+    document.getElementById('quoteBox').style.display = 'none';
+    document.getElementById('finalMsg').style.display = 'block';
+    
+    // Crackers blast 💥
+    let duration = 3 * 1000;
+    let end = Date.now() + duration;
+    
+    (function frame() {
+      confetti({
+        particleCount: 5,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 }
+      });
+      confetti({
+        particleCount: 5,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 }
+      });
+      if (Date.now() < end) {
+        requestAnimationFrame(frame);
+      }
+    }());
+  }
+}
+</script>
+
+</body>
+</html>
