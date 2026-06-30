@@ -59,3 +59,8 @@ opacity:0;
 `;
 
 document.head.appendChild(style);
+
+</script>
+
+</body>
+</html>
