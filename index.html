@@ -1,31 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday Atchaya 🎉</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday Atchaya ❤️</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <div class="container">
-    <h1>🎂 Happy Birthday! 🎂</h1>
-    <h2>Dear Atchaya ❤️</h2>
+<div class="overlay">
 
-    <p>
-      Wishing you a day filled with happiness, laughter, and unforgettable memories.
-      May all your dreams come true and may this year bring you endless success and joy. ✨
-    </p>
+<h1 id="typing"></h1>
 
-    <button onclick="showMessage()">🎁 Click for a Surprise</button>
+<p class="quote">
+Every smile of yours makes the world a little brighter. ✨
+</p>
 
-    <h3 id="message"></h3>
-  </div>
+<button onclick="openGift()">
+🎁 Open My Surprise
+</button>
 
-  <script src="script.js"></script>
-</body>
-</html>
-<div class="slideshow">
-    <img id="slide" src="IMG-20260630-WA0005.jpg" alt="Birthday Photo">
+<div id="gift" class="hidden">
+
+<img id="slide" src="IMG-20260630-WA0005.jpg">
+
+<h2>Happy Birthday Atchaya ❤️</h2>
+
+<p id="letter">
+May your birthday be as beautiful as your smile.
+May every dream you have come true and may your life always be filled with happiness, love and success. 🌸
+</p>
+
 </div>
 
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
